@@ -1,0 +1,278 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Flight Fare Predictor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+   <style>
+       body {
+background: #FF5F6D;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #443B96, #F60B68); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    text-align: center;
+}
+
+.navbar {
+    background:black;
+    opacity: 0.75;
+
+}
+
+a {
+    color: #ffffff;
+
+    text-shadow: #ffffff;
+
+
+}
+.nav-item{
+    font-size: 22px;
+    font-weight: 400;
+    transition: 0.2s ease-in-out;
+}
+.nav-item:hover{
+    transform: scale(1.2);
+
+}
+
+a:hover {
+    color: #f0f0f0;
+    font-width: 20px;
+  }
+
+.card{
+    background: #ffffff;
+    opacity: 0.80;
+    color: #000000;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    font: bold 20px/1 ;
+    border: 0.5px solid black;
+}
+
+.card:hover{
+    transform: scale(1.05);
+}
+
+.btn-st{
+    background: #f9f9f9;
+   	border: 2px solid #000000;
+    border-radius: 1000px;
+	margin-top: 10px;
+    padding: 10px 36px;
+    color: #000000;
+    display: inline-block;
+   	font: italic bold 20px/1 "Calibri", sans-serif;
+    text-align: center;
+}
+
+.btn-st:hover{
+    color: #4d089a;
+    border: 2px solid #4d089a;
+}
+.pred-t{
+    color: white;
+}
+.pred-t:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.creds{
+    color: white;
+}
+.creds:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+}
+   </style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <a class="navbar-brand" href="#">FLIGHT PRICE PREDICTOR</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+
+
+
+    </div>
+  </div>
+</nav>
+    <br><br><br>
+
+    <div class="container">
+        <form action="\predict" method="post">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Departure Date</h5>
+
+                            <input type="datetime-local" name="Dep_Time" id="Dep_Time" required="required">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Arrival Date</h5>
+
+                            <input type="datetime-local" name="Arrival_Time" id="Arrival_Time" required="required">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <br>
+                <br>
+                <br>
+
+
+
+             <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Source</h5>
+                               <select name="Source" id="Source" required="required">
+                                   <option value="Delhi">Delhi</option>
+                                   <option value="Kolkata">Kolkata</option>
+                                   <option value="Mumbai">Mumbai</option>
+                                   <option value="Chennai">Chennai</option>
+                               </select>
+
+                        </div>
+                    </div>
+                </div>
+
+                 <br>
+                <br>
+                <br>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Destination</h5>
+                             <select name="Destination" id="Destination" required="required">
+                                 <option value="Cochin">Cochin</option>
+                                 <option value="Delhi">Delhi</option>
+                                 <option value="New Delhi">New Delhi</option>
+                                 <option value="Hyderabad">Hyderabad</option>
+                                 <option value="Kolkata">Kolkata</option>
+                             </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <br>
+                <br>
+                <br>
+
+
+
+
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Stops</h5>
+                               <select name="stops"  required="required">
+                                   <option value="0">Non-Stop</option>
+                                   <option value="1">1 Stop</option>
+                                   <option value="2">2 Stop</option>
+                                   <option value="3">3 Stop</option>
+                                   <option value="4">4 Stop</option>
+                               </select>
+
+                        </div>
+                    </div>
+                </div>
+
+                 <br>
+                <br>
+                <br>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Airline Name</h5>
+                             <select name="Airline" id="Airline" required="required">
+                                <option value="Jet Airways">Jet Airways</option>
+                                <option value="IndiGo">IndiGo</option>
+                                <option value="Air India">Air India</option>
+                                <option value="Multiple carriers">Multiple carriers</option>
+                                <option value="SpiceJet">SpiceJet</option>
+                                <option value="Vistara">Vistara</option>
+                                <option value="Air Asia">Air Asia</option>
+                                <option value="GoAir">GoAir</option>
+                                <option value="Multiple carriers Premium economy">Multiple carriers Premium economy</option>
+                                <option value="Jet Airways Business">Jet Airways Business</option>
+                                <option value="Vistara Premium economy">Vistara Premium economy</option>
+                                <option value="Trujet">Trujet</option>
+                             </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <br>
+                <br>
+                <br>
+
+
+
+            <input type="submit" value="Predict" class="btn btn-st">
+
+
+
+
+
+        </form>
+       <br>
+
+        <div class="container pred-t">
+          <h4>{{ prediction_text }}</h4>
+        </div>
+        <br>
+
+        <div class="container creds">
+        <h5 style="color: orange">Made by chidvilas,sravani,ayyapa,deepak,ashok</h5>
+            </div>
+
+
+    </div>
+
+
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"
+            integrity="sha512-YSdqvJoZr83hj76AIVdOcvLWYMWzy6sJyIMic2aQz5kh2bPTd9dzY3NtdeEAzPp/PhgZqr4aJObB3ym/vsItMg==" crossorigin="anonymous"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/fontawesome.min.js" integrity="sha512-i3N2a3sMtKOQHXCJF3qEpce5twcGN9mRsWQe6PUTf9WS/eG5XkivI97uxit7B2nRGz5XuoszBaqndSqxdeVfag==" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
